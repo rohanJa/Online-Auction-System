@@ -1,0 +1,44 @@
+
+{% block body %}
+ <h1>Past auctions</h1>
+  <a href ="{% url 'searchp' %}"><h3>search</h3></a>
+<form action=" " method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+
+</form>
+  <div class="row" >
+
+  {% for p in past %}
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><a href="{% url 'product_detail' p.id %}" style="color:white">{{ p.name }}</a></div>
+		<div class="panel-body">		  <img src="{{ p.product_image.url }}"></img></div>
+		<div class="panel-body">Winner: {{ p.current_bidder }}</div>
+		<div class="panel-body">Won price: {{ p.currnet_price }}</div>
+		<div class="panel-body">End time: {{ p.end_time }}</div>
+		<div class="panel-body">End date: {{ p.end_date|date:'Y-m-d' }}</div>
+        <div class="panel-footer">Original Price: {{ p.price }}</div>
+      </div>
+    </div>
+  
+	{% endfor %}
+	
+  {% for p in past2 %}
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><a href="{% url 'product_detail' p.id %}" style="color:white">{{ p.name }}</a></div>
+		<div class="panel-body">		  
+			<img src="{{ p.product_image.url }}"></img><br>
+				Winner : {{ p.current_bidder }}<br>
+		Won price: {{ p.currnet_price }}<br>
+		End time: {{ p.end_time }}<br>
+		End date: {{ p.end_date|date:'Y-m-d' }}</div><br>
+        <div class="panel-footer">Original Price: {{ p.price }}</div>
+      </div>
+    </div>
+  
+	{% endfor %}
+  <s/div>
+
+{% endblock %}

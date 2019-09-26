@@ -1,0 +1,27 @@
+{% block body %}
+    <style>
+        button 
+        {
+            background-color: rgb(45, 101, 190);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+        }
+
+        img { height: 300px; width: 300px;}
+    </style>
+
+    <h1 >List of item auctioned by you. </h1>
+
+    {% for p in product %}
+        <li> 
+            <h2>Product Name&nbsp;:&nbsp;{{ p.name }} </h2><br>
+                <button onclick="location.href = '{% url 'single_adv' p.id %}'" >View Product</button>
+            <h2>&nbsp;&nbsp;&nbsp;---------**********--------- </h2>
+            </li>
+            <br>
+    {% endfor %}    
+{% endblock %}

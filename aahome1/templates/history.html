@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+body {background-color: white;}
+</style>
+<body>
+{% for h in ph %}
+
+{{ h.bidder_name }}<br>
+{{ h.bidded_time }}<br>
+{{ h.bidded_price }}<br>
+
+{% endfor %}
+</body>
+
+
+{% endblock %}

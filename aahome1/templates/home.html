@@ -1,0 +1,40 @@
+
+{% block body %}
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	
+<div class="container">
+	<h1>View, Bid & Buy Online</h1>
+	{% load staticfiles %}
+	<img src="{% static 'images/bidd.jpg' %}"class="img-responsive" style="width:100%">    
+   <br>
+	<div class="jumbotron">  
+		<h2 class="bg-primary">India's No#1 Bidding Platform</h2><br>
+		<p class="text-muted"> •100% Riskfree Online Auctions<br></p>
+		<p class="text-primary" > •Win or Buy Products at Huge Discount<br></p>
+		<p class="text-info"> •Click To BID Easy Auctions<br></p>
+		<p class="text-danger"> •Always Fair Auction Guaranteed<br></p>
+		<p class="text-success">•Worldwide Shipping<br></p>
+	</div>			  
+</div>
+
+<br>
+
+		 <footer class="container-fluid text-center">
+		  <form class="form-inline">Get deals:
+			<input type="email" class="form-control" size="50" placeholder="Email Address">
+			<button type="button" class="btn btn-danger">Subscribe!</button>
+		  </form>
+		</footer>
+
+
+
+</body>
+
+
+{% endblock %}
+

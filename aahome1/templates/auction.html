@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Auction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+  body
+		{   
+		 background-color: #00264d;
+		}
+	h1	
+		{
+		text-align: center;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		color: white;
+		text-shadow: 2px 1px black;
+		}
+p,h2
+	{
+		text-align: center;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		color: white;
+	}
+  ul 
+		{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: none;
+		}
+
+		li 
+		{
+			float: left;
+		}
+
+		li a 
+		{
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover 
+		{
+			background-color: white;
+			color: black;
+		}
+		  footer 
+	{
+      background-color: #f2f2f2;
+      padding: 15px;
+    }
+	
+	input {
+    width: 30%;
+	padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	border: 2px solid black;
+    border-radius: 6px;
+	background-color: white;
+    color: black;
+}
+
+ input[type=submit], input[type=reset] {
+    width: 15%;
+	background-color: blue;
+    border: 2px solid black;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.header {
+    padding: 10px;
+    text-align: left;
+}
+
+
+  </style>
+</head>
+
+
+
+<body>
+<div class="container">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><p>ONLINE AUCTION</p></a>
+   
+
+   </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+	    <ul class="nav navbar-nav navbar-right">
+        
+		<li><a href="file:///D:/bidding/signup.html" id ="myBtn1"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="file:///D:/bidding/login.html" id="myBtn2"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+		<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+	  </ul>
+    </div>
+  </div>
+</nav>
+
+</div>
+<div class="container">
+
+<ul class="nav nav-pills">
+		<li class="active"><a data-toggle="pill" href="#home">Home</a></li>
+		<li><a data-toggle="pill" href="#menu1">Live Auction</a></li>
+		<li><a data-toggle="pill" href="{% url 'home'%}">Upcoming Auction</a></li>
+		<li><a data-toggle="pill" href="#menu3">Past Auction</a></li>
+		<li><a data-toggle="pill" href="#menu4">Online Auction Rules</a></li>
+		<li><a data-toggle="pill" href="#menu5">Terms and Conditions</a></li>
+		<li><a data-toggle="pill" href="#menu6">Contact Us</a></li>
+		<li><a data-toggle="pill" href="#menu7">Feedback</a></li>
+		</ul>
+<hr>
+
+ 
+</div>			
+			
+<div class="tab-content">
+		 <!-- HOMEPAGE -->
+		
+		<div id="home" class="tab-pane fade in active">
+
+		<div class="media">
+				<div class="media-body">
+				<div class="container">
+				<h1>View, Bid & Buy Online</h1>	  <br>
+				<img src="00.jpg" class="img-responsive" style="width:100%">    
+				</div>
+				</div>
+				</div>
+			<br>				
+<div class="container">		
+		<div class="jumbotron">  
+			  <h2 class="bg-primary">India's No#1 Bidding Platform</h2><br>
+			  <p class="text-muted"> •100% Riskfree Online Auctions<br></p>
+				 <p class="text-primary" > •Win or Buy Products at Huge Discount<br></p>
+				 <p class="text-info"> •Click To BID Easy Auctions<br></p>
+				 <p class="text-danger"> •Always Fair Auction Guaranteed<br></p>
+				 <p class="text-success">•Worldwide Shipping<br></p>
+			  </p>  
+			</div>			  
+		</div>
+ 
+ 
+  <!-- FOOTER -->
+		 <div class="container">
+		 <footer class="container-fluid text-center">
+		  <form class="form-inline">Get deals:
+			<input type="email" class="form-control" size="50" placeholder="Email Address">
+			<button type="button" class="btn btn-danger">Subscribe!</button>
+		  </form>
+		</footer>
+		 </div>
+
+
+ </div>
+ 
+ 
+ 
+		 <!-- Menu1 -->
+			<div id="#menu1" class="tab-pane fade">
+			
+			
+			
+			
+<h1><span class="label label-primary">RUNNING AUCTIONS</span></h1>   <br>   
+	<img src="01.jpg" class="img-responsive" >    <br><br>
+  
+  
+								<canvas id="canvas" width="200" height="200" 
+							style="background-color:black">
+							</canvas>
+
+
+
+																				<script>
+																				var canvas = document.getElementById("canvas");
+																				var ctx = canvas.getContext("2d");
+																				var radius = canvas.height / 2;
+																				ctx.translate(radius, radius);
+																				radius = radius * 0.90
+																				setInterval(drawClock, 1000);
+
+																				function drawClock() {
+																				  drawFace(ctx, radius);
+																				  drawNumbers(ctx, radius);
+																				  drawTime(ctx, radius);
+																				}
+
+																				function drawFace(ctx, radius) {
+																				  var grad;
+																				  ctx.beginPath();
+																				  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+																				  ctx.fillStyle = 'white';
+																				  ctx.fill();
+																				  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+																				  grad.addColorStop(0, '#333');
+																				  grad.addColorStop(0.5, 'white');
+																				  grad.addColorStop(1, '#333');
+																				  ctx.strokeStyle = grad;
+																				  ctx.lineWidth = radius*0.1;
+																				  ctx.stroke();
+																				  ctx.beginPath();
+																				  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+																				  ctx.fillStyle = '#333';
+																				  ctx.fill();
+																				}
+
+																				function drawNumbers(ctx, radius) {
+																				  var ang;
+																				  var num;
+																				  ctx.font = radius*0.15 + "px arial";
+																				  ctx.textBaseline="middle";
+																				  ctx.textAlign="center";
+																				  for(num = 1; num < 13; num++){
+																					ang = num * Math.PI / 6;
+																					ctx.rotate(ang);
+																					ctx.translate(0, -radius*0.85);
+																					ctx.rotate(-ang);
+																					ctx.fillText(num.toString(), 0, 0);
+																					ctx.rotate(ang);
+																					ctx.translate(0, radius*0.85);
+																					ctx.rotate(-ang);
+																				  }
+																				}
+
+																				function drawTime(ctx, radius){
+																					var now = new Date();
+																					var hour = now.getHours();
+																					var minute = now.getMinutes();
+																					var second = now.getSeconds();
+																					//hour
+																					hour=hour%12;
+																					hour=(hour*Math.PI/6)+
+																					(minute*Math.PI/(6*60))+
+																					(second*Math.PI/(360*60));
+																					drawHand(ctx, hour, radius*0.5, radius*0.07);
+																					//minute
+																					minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+																					drawHand(ctx, minute, radius*0.8, radius*0.07);
+																					// second
+																					second=(second*Math.PI/30);
+																					drawHand(ctx, second, radius*0.9, radius*0.02);
+																				}
+
+																				function drawHand(ctx, pos, length, width) {
+																					ctx.beginPath();
+																					ctx.lineWidth = width;
+																					ctx.lineCap = "round";
+																					ctx.moveTo(0,0);
+																					ctx.rotate(pos);
+																					ctx.lineTo(0, -length);
+																					ctx.stroke();
+																					ctx.rotate(-pos);
+																				}
+																				</script>
+
+
+
+
+	
+			</div>
+		
+		
+          <!-- Menu2 -->
+			<div id="menu2" class="tab-pane fade">
+			
+			
+			
+			
+			
+     		</div>
+		
+	
+
+
+			<!-- Menu3 -->
+
+
+			<div id="menu3" class="tab-pane fade">
+		  
+		  
+		  
+		  
+		  </div>
+
+				  
+			<!-- Menu4 -->				  
+		<div id="menu4" class="tab-pane fade">
+
+
+
+		</div>
+
+
+<!-- Menu5 -->
+		<div id="menu5" class="tab-pane fade">
+		
+		
+		
+		</div>
+
+			
+
+<!-- Menu6 -->
+	<div id="menu6" class="tab-pane fade">
+	
+	
+	
+	
+		</div>
+	
+<!-- Menu7 -->
+				<div id="menu7" class="tab-pane fade">
+			
+
+
+
+
+			
+			   </div>
+				
+</div>		
+
+
+
+</body>
+</html>

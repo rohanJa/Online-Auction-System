@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<style>
+</style>
+<div>
+<h1>{{ product.name }}</h1>
+<img src="{{ product.product_image.url }}"></img>
+
+Category: {{ product.category }}
+Status : {{ product.status }}
+Description: {{ product.desc }}
+Price: {{ product.price }}
+Seller: {{ product.seller.user.username }}
+Current Bidder: {{ product.current_bidder }}
+Current Price: {{ product.current_price }}
+Start date: {{ product.start_date }}
+Start time: {{ product.start_time }}
+
+
+</div>
+{% endblock %}

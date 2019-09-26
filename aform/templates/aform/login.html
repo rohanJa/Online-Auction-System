@@ -1,0 +1,107 @@
+
+{% block body %}
+
+<style>
+
+	{% load staticfiles %}
+	
+	
+body { background: url("{% static 'images/14.jpg'%}") no-repeat center fixed; 
+			background-size: cover;
+ }
+ 
+h2	
+		{
+		text-align: center;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		color: black;
+		text-shadow: 1px 1px white;
+		}
+input[type=text], input[type=password] 
+{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		text-align: center;
+		display: inline-block;
+		width: 20%;
+		padding: 10px 10px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid black;
+		border-radius: 6px;
+		background-color: white;
+		color: black; 
+}
+button 
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+button:hover 
+{
+    opacity: 0.8;
+}
+.imgcontainer 
+{
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+.container-fluid 
+{
+      padding-top: 50px;
+      padding-bottom: 50px;
+} 
+img.avatar 
+{
+    width: 15%;
+    border-radius: 50%;
+}
+.container 
+{
+    padding: 10px;	
+}
+span.psw 
+{    
+    color: black;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+	   
+    }
+ 
+
+</style>
+
+<body>
+<center>
+<br><br><br>
+<h2>Login Form</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+	
+	{% load staticfiles %}
+	
+  <div class="imgcontainer">
+
+	<img src="{% static 'images/13.png' %}"class="img-responsive" alt="Avatar" class="avatar" style="width:10%">    
+	<br>
+  </div>
+	<div class="container-fluid bg-3 text-center">
+    {{ form.username }}<br>
+    {{ form.password }}<br>
+  <input type="checkbox" checked="checked"> Remember me    <br><br>
+
+	<button type="submit">Login</button><br><br>
+    <span class="psw">Forgot Password. <a href="#">Click Here</a></span><br>
+    </div>
+</form>
+</center>
+</body>
+{% endblock %}

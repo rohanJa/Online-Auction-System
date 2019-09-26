@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+<style> 
+body
+		{   
+		background: url("15.jpg") no-repeat center fixed; 
+		background-size: cover;	
+		}
+input
+		{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		display: inline-block;
+		width: 30%;
+		padding: 10px 10px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid black;
+		border-radius: 6px;
+		background-color: white;
+		color: black; 
+		}
+/* Set a style for all buttons */
+
+
+button 
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+button:hover 
+{
+    opacity: 0.8;
+}
+
+
+/* Extra styles for the cancel button */
+.cancelbtn 
+{
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,.signupbtn {
+ 
+    width: 20%;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+.container 
+{
+    padding: 10px;	
+}
+
+.container-fluid 
+{
+      padding-top: 50px;
+      padding-bottom: 50px;
+} 
+</style>
+</head>
+<body>
+<div class="container-fluid bg-3 text-center">
+<h2>Signup Form</h2>
+<form action="/" method="POST" >
+  <div class="container">
+  <input type="text" id="fname" name="fname" placeholder="First name" required autocomplete="on"><br>
+  <input type="text" id="lname" name="lname" placeholder="Last name" required autocomplete="on"><br>
+  <input type="text" id="lname" name="username" placeholder="Username" required autocomplete="on"><br>
+  <input type="integer" id="no" name="no" placeholder="Phone Number" required autocomplete="on"><br>
+  <input type="email" id="email" name="email" placeholder="Email" required autocomplete="on"><br>
+  <input type="password" id="lname" name="password" placeholder="Password" required autocomplete="off"><br>
+  <input type="password" id="lname" name="password-repeat" placeholder="Repeat Password" required autocomplete="off"><br>
+  <input type="checkbox" checked="checked"> Remember me
+  <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+ 
+      <button type="submit" class="signupbtn">Sign Up</button>
+	  <button type="button" class="cancelbtn">Cancel</button>
+   
+  </div>
+</form>
+</div>
+</body>
+</html>

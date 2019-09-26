@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1> Future auctions</h1>
+<a href ="{% url 'searchf' %}"><h3>search</h3></a>
+<form action=" " method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+
+</form>
+<div class="row">
+	{% for f in future %}
+		<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><a href="{% url 'product_detail' f.id %}" style="color:white">{{ f.name }}</a></div>
+			<div class="panel-body"><img src="{{ f.product_image.url }}"></img></div>
+			<div class="panel-body">Start date: {{ f.start_date|date }}</div>
+			<div class="panel-body">Start time: {{ f.start_time|time }}</div>
+			<div class="panel-footer">Price: {{ f.price }}</div>
+		    <p id= "demo"></p>
+		</div>
+		</div>
+	{% endfor %}
+	
+  {% for f in future2 %}
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+		<div class="panel-heading"><a href="{% url 'product_detail' f.id %}" style="color:white">{{ f.name }}</a></div>
+		<div class="panel-body"><img src="{{ f.product_image.url }}"></img></div>
+		<div class="panel-body">Start date: {{ f.start_date|date }}</div>
+		<div class="panel-body">Start time: {{ f.start_time|time }}</div>
+		<div class="panel-footer">Price: {{ f.price }}</div>
+      </div>
+    </div>
+  
+{% endfor %}
+  </div>
+
+
+
+{% endblock %}

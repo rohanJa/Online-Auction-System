@@ -1,0 +1,107 @@
+
+
+{% block body %}
+
+<style>
+
+	{% load staticfiles %}
+	
+	
+body { background: url("{% static 'images/15.jpg'%}") no-repeat center fixed; 
+			background-size: cover;
+ }
+ 
+h2	
+		{
+		text-align: center;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		color: black;
+		text-shadow: 1px 1px white;
+		}
+input
+{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		text-align: center;
+		display: inline-block;
+		width: 20%;
+		padding: 10px 10px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid black;
+		border-radius: 6px;
+		background-color: white;
+		color: black; 
+}
+button 
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+button:hover 
+{
+    opacity: 0.8;
+}
+.imgcontainer 
+{
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+.container-fluid 
+{
+      padding-top: 50px;
+      padding-bottom: 50px;
+} 
+img.avatar 
+{
+    width: 15%;
+    border-radius: 50%;
+}
+.container 
+{
+    padding: 10px;	
+}
+span.psw 
+{    
+    color: black;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+	   
+    }
+ 
+
+</style>
+
+
+
+<center>
+<br><br>
+<div class="ui segment center">
+  <h2>Sign up</h2><br>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        <!--{% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}-->
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+</center>
+  </div>
+{% endblock %}

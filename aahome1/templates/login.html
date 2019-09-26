@@ -1,0 +1,93 @@
+ {% block body %}
+<style> 
+body
+		{   
+		background: url("14.jpg") no-repeat center fixed; 
+			background-size: cover;
+			
+		}
+h2	
+		{
+		text-align: center;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		color: black;
+		text-shadow: 1px 1px white;
+		}
+input[type=text], input[type=password] 
+{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		text-align: center;
+		display: inline-block;
+		width: 20%;
+		padding: 10px 10px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid black;
+		border-radius: 6px;
+		background-color: white;
+		color: black; 
+}
+button 
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+button:hover 
+{
+    opacity: 0.8;
+}
+.imgcontainer 
+{
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+.container-fluid 
+{
+      padding-top: 50px;
+      padding-bottom: 50px;
+} 
+img.avatar 
+{
+    width: 15%;
+    border-radius: 50%;
+}
+.container 
+{
+    padding: 10px;	
+}
+span.psw 
+{    
+    color: black;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+	   
+    }
+ 
+</style>
+
+
+<body>
+<h2>Login Form</h2>
+
+ <form method="post">
+ <div class="imgcontainer">
+    <img src="13.png" alt="Avatar" class="avatar">
+  </div>
+    {% csrf_token %}
+	<div class="container-fluid bg-3 text-center">
+    {{ form.as_p }}
+	</div>
+    <button type="submit">Login</button>
+	<span class="psw">Forgot Password. <a href="#">Click Here</a></span><br>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'running.html' %}
+{% block body %}
+<div class="row">
+{% for p in ps %}
+{% if p.status == 'past' %}
+<div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><a href="{% url 'product_detail' p.id %}" style="color:white">{{ p.name }}</a></div>
+		<div class="panel-heading">Status: {{ p.status }}</div>
+		<div class="panel-body">		  <img src="{{ p.product_image.url }}"></img></div>
+		
+		<div class="panel-body">Winner: {{ p.current_bidder }}</div>
+		<div class="panel-body">Won price: {{ p.currnet_price }}</div>
+		<div class="panel-body">End time: {{ p.end_time }}</div>
+		<div class="panel-body">End date: {{ p.end_date|date:'Y-m-d' }}</div>
+        <div class="panel-footer">Original Price: {{ p.price }}</div>
+      </div>
+    </div>
+{% endif %}
+{% if p.status == 'future' %}
+<div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><a href="{% url 'product_detail' p.id %}" style="color:white">{{ p.name }}</a></div>
+		<div class="panel-heading">Status: {{ p.status }}</div>
+		<div class="panel-body">		  <img src="{{ p.product_image.url }}"></img></div>
+		
+		<div class="panel-body"></div>
+		<div class="panel-body"></div>
+		<div class="panel-body">Start time: {{ p.start_time }}</div>
+		<div class="panel-body">Start date: {{ p.start_date|date:'Y-m-d' }}</div>
+        <div class="panel-footer">Original Price: {{ p.price }}</div>
+      </div>
+    </div>
+{% endif %}
+{% if p.status == 'live' %}
+<div class="col-sm-4" onmouseenter="lfun[lf]">
+      <div class="panel panel-primary">
+	 
+        <div class="panel-heading"><a href="{% url 'product_detail' p.id %}" style="color:white">{{ p.name }}</a></div>
+		<div class="panel-heading">Status: {{ p.status }}</div>
+         <div class="panel-body">		  <img src="{{ p.product_image.url }}"></img>
+		<table>
+		<tr>
+		<td>Current Bidder: {{ p.current_bidder }}  </td>
+		<td>Current Price: {{ p.currnet_price }}   </td>
+		<tr>
+		<td>Start time: {{ p.start_time }}</td>
+		<td>Start date: {{ p.start_date|date:'Y-m-d' }}</td>
+		</tr>
+		<tr>
+		<td>End time: {{ p.end_time }}</td>
+		<td>End date: {{ p.end_date|date:'Y-m-d' }}</td>
+		</tr>
+		</table><br>
+		<p id= "{{ p.id }}"></p>
+		</div>
+		<div class="panel-body"><a href= "{% url 'bid' p.id %}">BID NOW</a></div>
+        <div class="panel-footer">Price: {{ p.price }}</div>
+      </div>
+    </div>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock %}
