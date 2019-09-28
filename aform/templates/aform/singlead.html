@@ -1,6 +1,8 @@
+{% extends 'auction.html' %}
+
 {% block body %}
 <style>
-button 
+/* button 
 {
     background-color: #4CAF50;
     color: white;
@@ -9,10 +11,11 @@ button
     border: none;
     cursor: pointer;
     width: 20%;
-}
+} */
 img { height: 300px; width: 300px;}
 </style>
-
+    </div>
+    </nav>
     {% for p in product %}
 
         <h2>Product Name:{{ p.name }} p id is {{p.id}}</h2> 
@@ -63,5 +66,5 @@ var x = setInterval(function() {
 </script>
     
     {% endfor %}
-    <button onclick="location.href = '/aform/viewadv'" >Go Back</button>
+    <button onclick="location.href = '/aform/viewadv'" class="btn btn-primary" ><span class="glyphicon glyphicon-backward"></span></button>
 {% endblock %}

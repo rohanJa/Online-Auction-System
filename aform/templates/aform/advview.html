@@ -1,55 +1,83 @@
+{% extends 'auction.html' %}
 
 {% block body %}
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    
-    
+
     <style>
-        button 
-        {
-            background-color: rgb(45, 101, 190);
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 20%;
+ 
+        .product{
+            position: relative;
+            margin: 15px 0px;
+            border: 2px  groove;
+            padding: 2px 10px;
+            font-size: 12px;
         }
+        .product:hover {
+            transform: scaleY(1.1);
+
+            /* -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
+            box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024; */
+            border-color: coral;
+        }
+        #button 
+        {
+            margin-left:184px;
+        } 
 
         img { height: 300px; width: 300px;}
     </style>
 
+</div>
+</nav>
+<div class="container">
+
+        <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href='{% url 'home'%}'>Home</a></li>
+                <li><a  href='{% url 'post_adv' %}'>Post Product</a></li>
+                <li><a data-toggle="pill" href='{% url 'view_adv' %}'>View Product</a></li>
+        </ul>    
+        
+        <hr>
+    </div>
+
     <h1 >List of item auctioned by you. </h1>
 
     {% for p in product %}
-        <li> 
-            <h2>Product Name&nbsp;:&nbsp;{{ p.productList.name }} </h2><br>
-                <button onclick="location.href = '{% url 'single_adv' p.productList.id %}'" >View Product</button>
-                <br>
-                <h2 id="{{ p.productList.id}}">status : {{p.status}}</h2>
-                <h2>&nbsp;&nbsp;&nbsp;---------**********--------- </h2>
-            </li>
-            <script>
+        <div class="col-md-4 col-xs-6">
+         <div class="product">
+             
+                <h2>Product Name&nbsp;:&nbsp;{{ p.productList.name }} </h2><br>
+                        <button id="button" class="btn btn-primary" onclick="location.href = '{% url 'single_adv' p.productList.id %}'" ><span class="glyphicon glyphicon-eye-open"></span></button>  
+                    <br>
+                <h2 id="{{ p.productList.id}}"></h2>
+                
+                <script>
+                    var countDownDate = new Date("{{p.time}}").getTime();
 
-                // Made anonymous function (for self invocation)
-                (function showUp(){
-                        // your code here
-                        if ("{{p.status}}" == "Scheduled"){
-                            document.getElementById({{ p.productList.id}}).className="text-success";
-                        }
-                        else if ("{{p.status}}" == "Finished"){
+                    // Made anonymous function (for self invocation)
+                    (function setInterval() {
+                        // Get today's date and time
+                        var now = new Date().getTime();
+                        
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+                       
+                        if (distance < 0) {
                             document.getElementById({{ p.productList.id}}).className="text-danger";
+                            document.getElementById("{{p.productList.id}}").innerHTML = "Status : EXPIRED";
+                        }
+                        else if(distance > 0){
+                            document.getElementById({{ p.productList.id}}).className = "text-primary";    
+                            document.getElementById("{{p.productList.id}}").innerHTML = "Status : Scheduled";
                         }
                         else{
-                            document.getElementById({{ p.productList.id}}).className = "text-primary";    
+                            document.getElementById({{ p.productList.id}}).className="text-success";
+                            document.getElementById("{{p.productList.id}}").innerHTML = "Status : Running ...";
                         }
-                    
                     })();
-            </script>
-            <br>
+                </script>
+                <br>
+            </div>
+            </div>        
     {% endfor %}    
 
 

@@ -164,14 +164,17 @@ def view_adv(request):
     statusDict["status"]=''
     statusDict["productList"] = '' 
     for obj in tempProduct:     
+        tempDT = str(obj.start_date)+' '+str(obj.start_time)
+        temp = datetime.datetime.strptime(tempDT,"%Y-%m-%d %H:%M:%S")
+        temp2 = temp.strftime("%m,%d,%Y %H:%M:%S")
         mainList.append({
             "productList" : obj,
-            "status" : status_check(obj.start_date,obj.start_time),
+            "time" : temp2,
         })
         
     print("statusDict "+str(mainList))
 
-    return render(request, 'aform/advview.html', {'product': mainList , 'status':statusDict["status"] })
+    return render(request, 'aform/advview.html', {'product': mainList ,})
 
     
 
