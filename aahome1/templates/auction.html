@@ -110,8 +110,8 @@ p,h2
       
 	    <ul class="nav navbar-nav navbar-right">
         
-		<li><a href="file:///D:/bidding/signup.html" id ="myBtn1"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		<li><a href="file:///D:/bidding/login.html" id="myBtn2"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+		<li><a href='{% url 'signup' %}' id ="myBtn1"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href='{% url 'login_view' %}' id="myBtn2"><span class="glyphicon glyphicon-user"></span> Login</a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 	  </ul>
     </div>

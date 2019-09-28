@@ -69,7 +69,7 @@ def home(request):
     #past = Product.objects.filter(start_date = yesterday, start_time__lte = timezone.now())
     now = datetime.datetime.now().strftime('%H:%M:%S')
     #now = timezone.now()
-    return render(request,'home.html', {'now': now })
+    return render(request,'auction.html', {'now': now })
 
 @login_required
 def bid(request,product_id):
@@ -100,3 +100,6 @@ def history(request,product_id):
 def product_detail(request, product_id):
     p = Product.objects.get(pk = product_id)
     return render(request,'productDetail.html', {'product': p })
+
+def main_page(request):
+    return render(request,'auction.html',{})

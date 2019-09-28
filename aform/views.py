@@ -62,34 +62,25 @@ def login_view(request):
 
 def post_adv(request):
     form = ProductForm(request.POST, request.FILES)
-    # print("Files "+str((vars(request.user))))
-    # print("form "+str(vars(form)))
-    # print("validity "+str(form.is_valid()))
-    # print((str(form.cleaned_data.get('name')))+str(form.cleaned_data.get('desc')))
-    # print("Time zone "+str(datetime.datetime.now().time()))
-    print("Settings "+str(settings.MEDIA_URL))
     if form.is_valid():
         s = Seller.objects.get(user = request.user)
         pname = form.cleaned_data.get('name')
         pdesc = form.cleaned_data.get('desc')
         pprice = form.cleaned_data.get('price')
         pstart_date = form.cleaned_data.get('start_date')
-        print("Start date is "+str(pstart_date))
+
         pstart_time = form.cleaned_data.get('start_time')
         #pduration = form.cleaned_data.get('duration')
         pcategory = form.cleaned_data.get('category')
         pimage = form.cleaned_data.get('product_image')
-        print("Image is "+str(pimage))
+        
         #pdate_time = form.cleaned_data.get('date_time')
         # product = Product(seller = s, product_image=pimage, name = pname, desc = pdesc, price = pprice, start_date= pstart_date, start_time= pstart_time,  category = pcategory)
         #product.end_time = F('product.start_time')+ F('product.duration')
         #product.end_time = F('start_time')+timedelta(days=1)
      
-        product = Product(seller = s, name = pname, desc = pdesc, price = pprice, category = pcategory,product_image = pimage,start_date = pstart_date,start_time = pstart_time)
-     
-     
+        product = Product(seller = s, name = pname, desc = pdesc, price = pprice, category = pcategory,product_image = pimage,start_date = pstart_date,start_time = pstart_time)   
         product.save()
-        print("product is saved "+str(product.save()))
         return HttpResponse('product added')    
     return render(request, 'aform/advform.html', {'form': form })
 
@@ -148,12 +139,39 @@ def searchp(request):
         return render(request, 'past.html', {'past': past, 'past2': past2})
     return render(request, 'past.html',{'form': form})
 
+
+def status_check(tempDate,tempTime):
+    if tempDate == datetime.datetime.now().date():
+        if tempTime == datetime.datetime.now().time() :
+            return "Running"
+        elif tempTime > datetime.datetime.now().time():
+            return "Scheduled"
+        else:
+            return "Running " 
+    elif tempDate > datetime.datetime.now().date():
+        return "Scheduled" 
+    else :
+        return "Finished"
+
 def view_adv(request):
     print("User type "+str(request.user.usertype))
     s = Seller.objects.get(user = request.user)
     product = Product.objects.filter(seller = s)
-    print("Product is "+str(vars(product.model)))
-    return render(request, 'aform/advview.html', {'product': product })
+    # print("Product is "+str(vars(product.model)))
+    tempProduct = product
+    mainList = []
+    statusDict = {}
+    statusDict["status"]=''
+    statusDict["productList"] = '' 
+    for obj in tempProduct:     
+        mainList.append({
+            "productList" : obj,
+            "status" : status_check(obj.start_date,obj.start_time),
+        })
+        
+    print("statusDict "+str(mainList))
+
+    return render(request, 'aform/advview.html', {'product': mainList , 'status':statusDict["status"] })
 
     
 
@@ -171,6 +189,21 @@ def  single_adv(request,product_id):
     
     temp = datetime.datetime.strptime(tempDT,"%Y-%m-%d %H:%M:%S")
     temp2 = temp.strftime("%m,%d,%Y %H:%M:%S")
-    # print("Time stamp is "+str(temp))
     
     return   render(request, 'aform/singlead.html', {'product':product_obj,'time':temp2})
+
+
+# def change_data(request,product_id):
+#     product_obj = Product.objects.filter(id = product_id)
+#     product_obj2 = product_obj.first()
+
+#     tempTime = str(product_obj2.start_time)
+#     tempTime = tempTime.split(".")[0]
+
+#     temp = datetime.datetime.strptime(tempTime,"%H:%M:%S")
+#     product_obj.update(start_time = temp)
+
+#     s = Seller.objects.get(user = request.user)
+#     product = Product.objects.filter(seller = s)
+
+#     return render(request, 'aform/advview.html', {'product': product })

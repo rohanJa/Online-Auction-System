@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^searchp/$', searchp, name='searchp'),
     url(r'^logout/$', logout_view, name='logout_view'),
     url(r'^singleadv/(?P<product_id>\d+)/$', single_adv, name='single_adv'),
+    # url(r'^singleadv/(?P<product_id>\d+)/$', change_data, name='change_data'),
 ]   

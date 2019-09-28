@@ -1,4 +1,12 @@
+
 {% block body %}
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    
     <style>
         button 
         {
@@ -18,10 +26,31 @@
 
     {% for p in product %}
         <li> 
-            <h2>Product Name&nbsp;:&nbsp;{{ p.name }} </h2><br>
-                <button onclick="location.href = '{% url 'single_adv' p.id %}'" >View Product</button>
-            <h2>&nbsp;&nbsp;&nbsp;---------**********--------- </h2>
+            <h2>Product Name&nbsp;:&nbsp;{{ p.productList.name }} </h2><br>
+                <button onclick="location.href = '{% url 'single_adv' p.productList.id %}'" >View Product</button>
+                <br>
+                <h2 id="{{ p.productList.id}}">status : {{p.status}}</h2>
+                <h2>&nbsp;&nbsp;&nbsp;---------**********--------- </h2>
             </li>
+            <script>
+
+                // Made anonymous function (for self invocation)
+                (function showUp(){
+                        // your code here
+                        if ("{{p.status}}" == "Scheduled"){
+                            document.getElementById({{ p.productList.id}}).className="text-success";
+                        }
+                        else if ("{{p.status}}" == "Finished"){
+                            document.getElementById({{ p.productList.id}}).className="text-danger";
+                        }
+                        else{
+                            document.getElementById({{ p.productList.id}}).className = "text-primary";    
+                        }
+                    
+                    })();
+            </script>
             <br>
     {% endfor %}    
+
+
 {% endblock %}
