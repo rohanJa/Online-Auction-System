@@ -2,6 +2,15 @@
 
 {% block body %}
 <style>
+        #button_id
+        {
+            margin-left:184px;
+        } 
+
+        #product_description{
+            color: white;
+            font-size: 20px;
+        }
 /* button 
 {
     background-color: #4CAF50;
@@ -12,59 +21,92 @@
     cursor: pointer;
     width: 20%;
 } */
-img { height: 300px; width: 300px;}
+    /* { height: 300px; width: 300px;} */
+    img { height: 300px; width: 300px;}
 </style>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">  
+                    <li><a href='{% url 'logout_view' %}' id ="myBtn1"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                </ul>
+            </div>    
+
+            </div>
+        </nav>
     </div>
-    </nav>
+   
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href='{% url 'home'%}'>Home</a></li>
+            <li><a  href='{% url 'post_adv' %}'>Post Product</a></li>
+            <li><a data-toggle="pill" href='{% url 'view_adv' %}'>View Product</a></li>
+        </ul>    
+        <hr>
+    </div>
+   
     {% for p in product %}
+        <div class="container">
+            <h2>Product Name:{{ p.name }} p id is {{p.id}}</h2> 
+            <div class="col-md-4 col-xs-6">
+                <img id="product_image_{{p.id}}" src="/media/{{p.product_image}}"/><br>
+            </div>
+            
+            <div id="product_description" class="col-md-4 col-xs-6">
+        
+                <b>Category&nbsp;: </b> {{ p.category }}<br>
+                <br><b> Start date&nbsp;:</b>&nbsp;{{ p.start_date }}
+                <br><b> Start time&nbsp;:</b>&nbsp;{{ p.start_time }}
+                <br><b> End time&nbsp;:</b>&nbsp;{{ p.end_time }}
+                <br><b> Price&nbsp;:</b>&nbsp;{{ p.price }}
+                <br><b> Description&nbsp;:</b>&nbsp;{{ p.desc }}
+                <br><b> Current Bidder&nbsp;:</b>&nbsp;{{ p.current_bidder }}
+                <br><b> Current Price&nbsp;:</b>&nbsp;{{ p.currnet_price }}<br><br>
+                <br><p id="timer_{{p.id}}"></p>
+                <button id="button_id" onclick="location.href = '/aform/viewadv'" class="btn btn-primary" ><span class="glyphicon glyphicon-backward"></span></button>
+            </div>           
+            <script>
+                // Set the date we're counting down to
+                var countDownDate = new Date("{{time}}").getTime();
 
-        <h2>Product Name:{{ p.name }} p id is {{p.id}}</h2> 
-        <img src="/media/{{p.product_image}}"/><br>
-        Category:  {{ p.category }}<br>
-        <br> Start date&nbsp;:&nbsp;{{ p.start_date }}
-        <br> Start time&nbsp;:&nbsp;{{ p.start_time }}
-        <br> End time&nbsp;:&nbsp;{{ p.end_time }}
-        <br> Price&nbsp;:&nbsp;{{ p.price }}
-        <br> Description&nbsp;:&nbsp;{{ p.desc }}
-        <br> Current Bidder&nbsp;:&nbsp;{{ p.current_bidder }}
-        <br> Current Price&nbsp;:&nbsp;{{ p.currnet_price }}<br><br>
-        <br><p id="demo{{p.id}}"></p>
+                // Update the count down every 1 second
+                var x = setInterval(function() {
 
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("{{time}}").getTime();
+                // Get today's date and time
+                var now = new Date().getTime();
+                var duration = new Date(1970 ,0,1,8,30,0,0).getTime();
+                var end_time = countDownDate +duration
 
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+                if (distance < 0) {
+                    if(now>countDownDate && now<end_time){
+                        var distance = end_time - now;
+                    }
+                }  
+                console.log(distance)  
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-console.log(countDownDate);
-
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo{{p.id}}").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo{{p.id}}").innerHTML = "EXPIRED";
-  }
-}, 1000);
-</script>
+                timer_string = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";            
+                // Output the result in an element with id="demo"
+                document.getElementById("timer_{{p.id}}").innerHTML = "Begins in : "+timer_string;
+                
+                // If the count down is over, write some text 
+                if (distance < 0) {                 
+                        clearInterval(x);
+                        document.getElementById("timer_{{p.id}}").innerHTML = "Bid Ended";
+                        document.getElementById("product_image_{{p.id}}").style.opacity =0.6;
+                }
+                else{
+                    if(now>countDownDate && now<end_time){
+                        document.getElementById("timer_{{p.id}}").innerHTML = "Time Left : "+timer_string;
+                    }
+                }
+                }, 1000);
+            </script>
     
     {% endfor %}
-    <button onclick="location.href = '/aform/viewadv'" class="btn btn-primary" ><span class="glyphicon glyphicon-backward"></span></button>
+</div>
 {% endblock %}

@@ -140,6 +140,8 @@ def searchp(request):
     return render(request, 'past.html',{'form': form})
 
 
+# This function is obselete for now 
+
 def status_check(tempDate,tempTime):
     if tempDate == datetime.datetime.now().date():
         if tempTime == datetime.datetime.now().time() :
@@ -175,8 +177,6 @@ def view_adv(request):
     print("statusDict "+str(mainList))
 
     return render(request, 'aform/advview.html', {'product': mainList ,})
-
-    
 
 def logout_view(request):
     logout(request)
