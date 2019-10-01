@@ -140,6 +140,8 @@ def searchp(request):
     return render(request, 'past.html',{'form': form})
 
 
+# This function is obselete for now 
+
 def status_check(tempDate,tempTime):
     if tempDate == datetime.datetime.now().date():
         if tempTime == datetime.datetime.now().time() :
@@ -164,16 +166,17 @@ def view_adv(request):
     statusDict["status"]=''
     statusDict["productList"] = '' 
     for obj in tempProduct:     
+        tempDT = str(obj.start_date)+' '+str(obj.start_time)
+        temp = datetime.datetime.strptime(tempDT,"%Y-%m-%d %H:%M:%S")
+        temp2 = temp.strftime("%m,%d,%Y %H:%M:%S")
         mainList.append({
             "productList" : obj,
-            "status" : status_check(obj.start_date,obj.start_time),
+            "time" : temp2,
         })
         
     print("statusDict "+str(mainList))
 
-    return render(request, 'aform/advview.html', {'product': mainList , 'status':statusDict["status"] })
-
-    
+    return render(request, 'aform/advview.html', {'product': mainList ,})
 
 def logout_view(request):
     logout(request)

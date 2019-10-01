@@ -12,6 +12,7 @@
   body
 		{   
 		 background-color: #00264d;
+		 /* background-image: linear-gradient(to bottom, blue , lightblue); */
 		}
 	h1	
 		{
@@ -106,6 +107,7 @@ p,h2
    
 
    </div>
+   {% block body %}
     <div class="collapse navbar-collapse" id="myNavbar">
       
 	    <ul class="nav navbar-nav navbar-right">
@@ -130,7 +132,7 @@ p,h2
 		<li><a data-toggle="pill" href="#menu5">Terms and Conditions</a></li>
 		<li><a data-toggle="pill" href="#menu6">Contact Us</a></li>
 		<li><a data-toggle="pill" href="#menu7">Feedback</a></li>
-		</ul>
+</ul>
 <hr>
 
  
@@ -145,7 +147,7 @@ p,h2
 				<div class="media-body">
 				<div class="container">
 				<h1>View, Bid & Buy Online</h1>	  <br>
-				<img src="00.jpg" class="img-responsive" style="width:100%">    
+				<!-- <img src="00.jpg" class="img-responsive" style="width:100%">     -->
 				</div>
 				</div>
 				</div>
@@ -343,7 +345,7 @@ p,h2
 				
 </div>		
 
-
+{% endblock %}
 
 </body>
 </html>
