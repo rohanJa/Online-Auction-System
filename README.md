@@ -7,15 +7,15 @@ Requirements:-
 Create virtual enviornment:-
     Step 1 :-
         Create a virtualenv using below command :-
-            '''
+            ```
             python3 -m virtualenv auction
-            '''
+            ```
     A name of directory with "auction"  will be created.
 
 To activate virtual enviornment:-
-    '''
+    ```
     source auction/bin/activate
-    '''
+    ```
 To intiate directory with git :-
     
     Step 2.1 :-
