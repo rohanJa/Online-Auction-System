@@ -7,13 +7,15 @@ Requirements:-
 Create virtual enviornment:-
     Step 1 :-
         Create a virtualenv using below command :-
+            '''
             python3 -m virtualenv auction
-    
-    A directory with "auction" name will be created.
+            '''
+    A name of directory with "auction"  will be created.
 
 To activate virtual enviornment:-
+    '''
     source auction/bin/activate
-
+    '''
 To intiate directory with git :-
     
     Step 2.1 :-
@@ -37,4 +39,6 @@ Now to intialize project:-
 
 Now run the project :-
 
+        '''
         python manage.py runserver 127.0.0.1:8000  
+        '''
