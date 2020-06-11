@@ -1,4 +1,4 @@
-An online biding project built using django framework.  
+An online biding project built using django framework.  In this a bidder can bid and seller can sell the product.
 
 Requirements:-
     python3
